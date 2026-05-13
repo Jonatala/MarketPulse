@@ -1,10 +1,11 @@
 import yfinance as yf
 import pandas as pd
 import datetime as dt
-import os
+from pathlib import Path
 
-DATA_DIR = "../../data/raw"
-FILE_PATH = os.path.join(DATA_DIR, )
+# BASE_DIR = Path.cwd()
+BASE_DIR = Path(__file__).resolve().parents[2]
+DATA_DIR = BASE_DIR / "data" / "raw"
 
 TICKERS = ["AAPL", "MSFT", "GOOGL", "AMZN", "^GSPC", "TSLA", "^VIX"]
 
@@ -34,7 +35,7 @@ def fetch_data(ticker, period="1y"):
     return df[["timestamp", "ticker", "open", "high", "low", "close", "volume"]]
 
 
-def fetch_all(tickers, period="1yr"):
+def fetch_all(tickers, period="1y"):
     return pd.concat(
         [fetch_data(t, period) for t in tickers],
         ignore_index=True
@@ -45,9 +46,9 @@ def fetch_all(tickers, period="1yr"):
 def  save_to_csv(df, ticker):
     date_tag = dt.datetime.utcnow().strftime("%Y%m%d")
 
-    path = f"../../data/raw/{ticker}/{date_tag}.csv"
+    path = DATA_DIR / ticker / f"{date_tag}.csv"
 
-    os.makedirs(os.path.dirname(path), exist_ok=True)
+    path.parent.mkdir(parents=True, exist_ok=True)
 
     df.to_csv(path, index=False)
 
@@ -74,7 +75,8 @@ def main():
 
     if all_data:
 
-        full_df = pd.concat(all_data)
+        full_df = pd.concat(all_data,
+                            ignore_index=True)
 
         print(full_df.head())
 
