@@ -2,6 +2,9 @@ from src.data_access.load_data import (load_ticker, load_all)
 from src.features.build_features import (
     build_features, create_target, save_processed)
 
+from src.training.train import (
+    prepare_dataset,
+    time_split, train_model, evaluate)
 TICKERS = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "TSLA", "META", "NFLX", "ORCL", "INTC"]
 
 # choose ticker
@@ -28,3 +31,12 @@ print(df_features.head(2))
 save_processed(df_features,"ALL_TICKERS")
 
 print("Feature pipeline completed")
+
+df, X, y = prepare_dataset(df_features)
+
+X_train, X_test, y_train, y_test, test_df = time_split(df, X, y)
+
+model = train_model(X_train, y_train)
+
+preds = evaluate(model, X_test, y_test)
+

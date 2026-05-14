@@ -7,7 +7,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parents[2]
 DATA_DIR = BASE_DIR / "data" / "raw"
 
-TICKERS = ["AAPL", "MSFT", "GOOGL", "AMZN", "^GSPC", "TSLA", "^VIX"]
+TICKERS = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "TSLA", "META", "NFLX", "ORCL", "INTC"]
 
 # Fetch and clean data
 def fetch_data(ticker, period="1y"):
