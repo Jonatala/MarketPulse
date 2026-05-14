@@ -2,7 +2,7 @@ from src.data_access.load_data import (load_ticker, load_all)
 from src.features.build_features import (
     build_features, create_target, save_processed)
 
-TICKERS = ["AAPL", "MSFT", "GOOGL", "AMZN", "^GSPC", "TSLA", "^VIX"]
+TICKERS = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "TSLA", "META", "NFLX", "ORCL", "INTC"]
 
 # choose ticker
 #ticker = "AAPL"
