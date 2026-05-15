@@ -27,7 +27,7 @@ def time_split(df, X, y, split_ratio=0.8):
     split_index = int(len(df) * split_ratio)
 
     X_train = X.iloc[:split_index]
-    X_test = x.iloc[split_index:]
+    X_test = X.iloc[split_index:]
 
     y_train = y.iloc[:split_index]
     y_test = y.iloc[split_index:]
@@ -40,7 +40,7 @@ def time_split(df, X, y, split_ratio=0.8):
 
 def train_model(X_train, y_train):
 
-    model = xgb.XGBClassifier(n_estimator=200,
+    model = xgb.XGBClassifier(n_estimators=200,
                               max_depth=4,
                               learning_rate=0.05,
                               subsample=0.8,

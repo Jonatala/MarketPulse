@@ -3,6 +3,7 @@ import pandas as pd
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 RAW_DIR = BASE_DIR / "data" / "raw"
+#SAVED_DIR = BASE_DIR / "data" / "processed"
 
 def load_ticker(ticker: str)-> pd.DataFrame:
 
@@ -46,3 +47,4 @@ def load_all(tickers: list[str])-> pd.DataFrame:
         dfs.append(df)
 
     return pd.concat(dfs, ignore_index=True)
+

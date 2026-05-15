@@ -27,6 +27,7 @@ print(df_features.head(2))
 
 print("Feature dataframe:")
 print(df_features.head(2))
+print(df_features.shape)
 
 save_processed(df_features,"ALL_TICKERS")
 
